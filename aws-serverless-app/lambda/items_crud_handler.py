@@ -17,6 +17,7 @@ def lambda_handler(event, context):
     item_id = path_params.get("id")
 
     print(f"Received event: {json.dumps(event)}")
+    print(f"HTTP Method: {http_method}, Path: {path}, Item ID: {item_id}")
     # Allow POST to the items collection for both REST and HTTP APIs without brittle path matching.
     is_items_collection = (
         path.endswith("/items")

@@ -2,8 +2,10 @@ name: Deploy Lambda
 
 on:
   push:
+    branches: [ "main" ]
     paths:
-      - "lambda/**"
+      - "aws-serverless-app/lambda/**"
+  workflow_dispatch:
 
 jobs:
   deploy:
@@ -20,13 +22,16 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_LAMBDA_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
+      - name: Show repo structure
+        run: ls -la && find . -maxdepth 3 -type d
+
       - name: Zip Lambda code
         run: |
-          cd lambda
+          cd aws-serverless-app/lambda
           zip function.zip *.py
 
       - name: Deploy Lambda
         run: |
           aws lambda update-function-code \
             --function-name ${{ secrets.LAMBDA_FUNCTION_NAME }} \
-            --zip-file fileb://lambda/function.zip
+            --zip-file fileb://aws-serverless-app/lambda/function.zip

@@ -1,4 +1,4 @@
-const API_URL = "https://YOUR_API_ID.execute-api.ap-southeast-2.amazonaws.com/dev-prod";
+const API_URL = "https://od14qmcrug.execute-api.ap-southeast-2.amazonaws.com/dev-prod/items";
 
 async function createItem() {
   const name = document.getElementById("name").value;

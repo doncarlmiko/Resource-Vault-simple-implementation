@@ -38,7 +38,7 @@ def lambda_handler(event, context):
         item_id = str(uuid4())
         item = {"id": item_id, **body}
         table.put_item(Item=item)
-        return respond(200, {"message": "Item created", "id": item_id, "deployedBy": "github-actions-v1"})
+        return respond(200, {"message": "Item created", "id": item_id})
 
     # READ item
     if http_method == "GET" and item_id:

@@ -2,8 +2,10 @@ name: Deploy Lambda
 
 on:
   push:
+    branches: [ "main" ]
     paths:
       - "aws-serverless-app/lambda/**"
+  workflow_dispatch:
 
 jobs:
   deploy:
@@ -19,7 +21,7 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_LAMBDA_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_LAMBDA_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
-          
+
       - name: Show repo structure
         run: ls -la && find . -maxdepth 3 -type d
 

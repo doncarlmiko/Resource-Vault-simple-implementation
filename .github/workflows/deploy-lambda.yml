@@ -3,7 +3,7 @@ name: Deploy Lambda
 on:
   push:
     paths:
-      - "lambda/**"
+      - "aws-serverless-app/lambda/**"
 
 jobs:
   deploy:

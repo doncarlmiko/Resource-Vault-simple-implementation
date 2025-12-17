@@ -71,7 +71,7 @@ def respond(status, body):
     return {
         "statusCode": status,
         "headers": {"Content-Type": "application/json", "Access-Control-Allow-Origin": "*",
-                    "Access-Control-Allow-Origin": "http://resourcevault-static-demo.s3-website-ap-southeast-2.amazonaws.com/src/index.html",
+                    "Access-Control-Allow-Origin": "*",
                     "Access-Control-Allow-Headers": "Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token",
                     "Access-Control-Allow-Methods": "OPTIONS,GET,POST,PUT,DELETE"
                     },

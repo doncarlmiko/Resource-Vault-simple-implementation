@@ -7,7 +7,6 @@ import boto3
 dynamodb = boto3.resource("dynamodb")
 table = dynamodb.Table("ItemsTable")
 
-
 def lambda_handler(event, context):
     http_method = event.get("httpMethod") or event.get("requestContext", {}).get("http", {}).get("method")
     path = event.get("path") or event.get("rawPath") or ""
@@ -71,6 +70,10 @@ class DecimalEncoder(json.JSONEncoder):
 def respond(status, body):
     return {
         "statusCode": status,
-        "headers": {"Content-Type": "application/json", "Access-Control-Allow-Origin": "*"},
+        "headers": {"Content-Type": "application/json", "Access-Control-Allow-Origin": "*",
+                    "Access-Control-Allow-Origin": "http://resourcevault-static-demo.s3-website-ap-southeast-2.amazonaws.com/src/index.html",
+                    "Access-Control-Allow-Headers": "Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token",
+                    "Access-Control-Allow-Methods": "OPTIONS,GET,POST,PUT,DELETE"
+                    },
         "body": json.dumps(body, cls=DecimalEncoder),
     }
